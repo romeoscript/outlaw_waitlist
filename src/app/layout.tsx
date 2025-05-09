@@ -47,7 +47,7 @@ export default async function RootLayout({
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
-                backgroundImage: "url('/images/beamitx.jpg')",
+                backgroundImage: "url('/images/beamitx.png')",
                 width: "100vw",
               }}
             >
