@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../ui/card";
 import { motion, AnimatePresence } from "framer-motion";
-import { Zap, Trophy, DollarSign } from "lucide-react";
+import { Trophy, DollarSign, Target, Flame, Users, Award, LogOut, ChevronDown } from "lucide-react";
 import { useToast } from "../ui/use-toast";
 import { useWallet } from '@solana/wallet-adapter-react';
 import {
@@ -25,6 +25,7 @@ import RewardAnimation from "./RewardAnimation";
 import ConfettiAnimation from "./ConfettiAnimation";
 import LoadingScreen from "./LoadingScreen";
 import { UserData, PointsList } from "./types";
+import Image from "next/image";
 
 export default function TasksTab() {
   const [isTwitterFollowed, setIsTwitterFollowed] = useState(false);
@@ -56,7 +57,7 @@ export default function TasksTab() {
       setIsTwitterFollowed(!!followed);
 
       if (!wasAlreadyFollowed && followed) {
-        triggerRewardAnimation("Twitter follow completed! +100 points");
+        triggerRewardAnimation("Twitter follow completed! +100 OUTLAW tokens");
       }
     } finally {
       setIsLoading(false);
@@ -71,7 +72,7 @@ export default function TasksTab() {
       setIsTwitterIIFollowed(!!followed);
 
       if (!wasAlreadyFollowed && followed) {
-        triggerRewardAnimation("Subscribe completed! +100 points");
+        triggerRewardAnimation("Subscribed to channel! +100 OUTLAW tokens");
       }
     } finally {
       setIsLoading(false);
@@ -86,7 +87,7 @@ export default function TasksTab() {
       setIsTwitterIIIFollowed(!!followed);
 
       if (!wasAlreadyFollowed && followed) {
-        triggerRewardAnimation("Kev the Dev follow completed! +100 points");
+        triggerRewardAnimation("Dev followed! +100 OUTLAW tokens");
       }
     } finally {
       setIsLoading(false);
@@ -101,7 +102,7 @@ export default function TasksTab() {
       setIsDiscordJoined(!!joined);
 
       if (!wasAlreadyJoined && joined) {
-        triggerRewardAnimation("Discord join completed! +100 points");
+        triggerRewardAnimation("Joined the Outlaw Gang! +100 OUTLAW tokens");
       }
     } finally {
       setIsLoading(false);
@@ -116,7 +117,7 @@ export default function TasksTab() {
       setIsTelegramJoined(!!joined);
 
       if (!wasAlreadyJoined && joined) {
-        triggerRewardAnimation("Telegram join completed! +100 points");
+        triggerRewardAnimation("Telegram posse joined! +100 OUTLAW tokens");
       }
     } finally {
       setIsLoading(false);
@@ -131,7 +132,7 @@ export default function TasksTab() {
       setIsTelegramIIJoined(!!joined);
 
       if (!wasAlreadyJoined && joined) {
-        triggerRewardAnimation("Telegram channel join completed! +100 points");
+        triggerRewardAnimation("Telegram channel joined! +100 OUTLAW tokens");
       }
     } finally {
       setIsLoading(false);
@@ -221,7 +222,7 @@ export default function TasksTab() {
         console.error("Error loading data:", error);
         toast({
           title: "Error",
-          description: "Failed to load your data. Please try again.",
+          description: "Failed to load your data, partner. Try again.",
         });
       }
     };
@@ -242,11 +243,25 @@ export default function TasksTab() {
     return <LoadingScreen />;
   }
 
+  const getLevelName = () => {
+    if (!userData) return "Rookie";
+
+    if (userData.total_points < 500) {
+      return "Rookie";
+    } else if (userData.total_points < 2000) {
+      return "Gunslinger";
+    } else if (userData.total_points < 5000) {
+      return "Desperado";
+    }
+    return "Outlaw";
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
+      className="relative"
     >
       {/* Reward animation overlay */}
       <AnimatePresence>
@@ -260,27 +275,46 @@ export default function TasksTab() {
         {showConfetti && <ConfettiAnimation showConfetti={showConfetti} />}
       </AnimatePresence>
 
-      <Card className="border-2 border-yellow-400 bg-black text-white overflow-hidden">
-        <CardHeader className="bg-gradient-to-r from-yellow-500 to-yellow-400 p-4 sm:p-6">
+      <Card className="border border-amber-500/50 bg-black text-white overflow-hidden shadow-lg">
+        {/* Animated background with grain texture */}
+        <div 
+          className="absolute inset-0 z-0 bg-black/90"
+          style={{
+            backgroundImage: "radial-gradient(rgba(245, 158, 11, 0.15) 1px, transparent 0)",
+            backgroundSize: "20px 20px",
+            backgroundPosition: "-10px -10px",
+          }}
+        />
+        
+        <CardHeader className="relative z-10 p-4 sm:p-6 border-b border-amber-500/20">
           <div className="flex justify-between items-center">
             <div>
               <motion.div
                 initial={{ x: -20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
                 transition={{ delay: 0.2 }}
+                className="flex items-center"
               >
-                <CardTitle className="text-xl sm:text-3xl font-bold text-black">
-                  NFT Waitlist
-                </CardTitle>
-              </motion.div>
-              <motion.div
-                initial={{ x: -20, opacity: 0 }}
-                animate={{ x: 0, opacity: 1 }}
-                transition={{ delay: 0.3 }}
-              >
-                <CardDescription className="text-black/80 mt-1 sm:mt-2 text-sm sm:text-lg">
-                  Complete tasks, earn points, level up!
-                </CardDescription>
+                <div className="relative group mr-3">
+                  <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 opacity-75 group-hover:opacity-100 blur group-hover:blur-md transition-all duration-300"></div>
+                  <div className="relative">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-amber-500 bg-black flex items-center justify-center">
+                      <svg width="24" height="24" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform scale-75">
+                        <path d="M100 20C70 20 40 50 40 80C40 110 70 140 100 140C130 140 160 110 160 80C160 50 130 20 100 20Z" fill="#F59E0B"/>
+                        <path d="M74 60L100 100L126 60L100 20L74 60Z" fill="#1E293B"/>
+                        <path d="M100 140V180M80 160H120" stroke="#F59E0B" strokeWidth="10"/>
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+                <div>
+                  <CardTitle className="text-xl sm:text-3xl font-bold text-white">
+                    OUTLAW <span className="text-amber-500">WAITLIST</span>
+                  </CardTitle>
+                  <CardDescription className="text-white/70 mt-1 sm:mt-2 text-sm sm:text-base">
+                    Complete bounties, earn tokens, join the gang!
+                  </CardDescription>
+                </div>
               </motion.div>
             </div>
             <motion.div
@@ -294,57 +328,82 @@ export default function TasksTab() {
               }}
               className="flex items-center"
             >
-              <div className="bg-black/30 p-2 sm:p-3 rounded-full text-white text-base sm:text-xl font-bold">
-                {userPointsTotal}
-                <span className="ml-1 text-yellow-300">⚡</span>
-              </div>
+              <motion.div 
+                className="bg-black border border-amber-500 rounded-full px-3 py-1 text-base sm:text-xl font-bold flex items-center"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <DollarSign className="w-4 h-4 sm:w-5 sm:h-5 mr-1 text-amber-500" />
+                <span className="text-amber-500">{userPointsTotal}</span>
+              </motion.div>
             </motion.div>
           </div>
+          
+          {/* Status Banner */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.4 }}
+            className="mt-3 sm:mt-4 flex items-center justify-between"
+          >
+            <motion.div 
+              className="bg-black border border-amber-500 rounded-lg px-3 py-1 text-xs font-bold text-white flex items-center"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+              <Trophy className="w-3 h-3 mr-1 text-amber-500" />
+              <span>Status: <span className="text-amber-500">{getLevelName()}</span></span>
+            </motion.div>
+            
+            <div className="text-amber-500 text-xs animate-pulse">
+              TOKEN LAUNCHING SOON
+            </div>
+          </motion.div>
         </CardHeader>
 
-        {/* Tabs navigation - Mobile Friendly */}
-        <div className="bg-black border-b border-yellow-400/30">
+        {/* Tabs navigation */}
+        <div className="relative z-10 bg-black border-b border-amber-500/20">
           <div className="flex">
             <motion.button
-              whileHover={{ backgroundColor: activeTab === 'tasks' ? 'rgba(234, 179, 8, 0.2)' : 'rgba(234, 179, 8, 0.1)' }}
+              whileHover={{ backgroundColor: 'rgba(245, 158, 11, 0.1)' }}
               whileTap={{ scale: 0.98 }}
-              className={`flex-1 py-2 sm:py-3 px-2 sm:px-4 text-center font-medium text-xs sm:text-sm ${activeTab === 'tasks' ? 'text-yellow-400 border-b-2 border-yellow-400' : 'text-white/70'
+              className={`flex-1 py-2 sm:py-3 px-2 sm:px-4 text-center font-medium text-xs sm:text-sm ${activeTab === 'tasks' ? 'text-amber-500 border-b-2 border-amber-500' : 'text-white/70'
                 }`}
               onClick={() => handleTabChange('tasks')}
             >
               <div className="flex items-center justify-center">
-                <Zap className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                <span>Tasks</span>
+                <Target className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
+                <span>BOUNTIES</span>
               </div>
             </motion.button>
             <motion.button
-              whileHover={{ backgroundColor: activeTab === 'rewards' ? 'rgba(234, 179, 8, 0.2)' : 'rgba(234, 179, 8, 0.1)' }}
+              whileHover={{ backgroundColor: 'rgba(245, 158, 11, 0.1)' }}
               whileTap={{ scale: 0.98 }}
-              className={`flex-1 py-2 sm:py-3 px-2 sm:px-4 text-center font-medium text-xs sm:text-sm ${activeTab === 'rewards' ? 'text-yellow-400 border-b-2 border-yellow-400' : 'text-white/70'
+              className={`flex-1 py-2 sm:py-3 px-2 sm:px-4 text-center font-medium text-xs sm:text-sm ${activeTab === 'rewards' ? 'text-amber-500 border-b-2 border-amber-500' : 'text-white/70'
                 }`}
               onClick={() => handleTabChange('rewards')}
             >
               <div className="flex items-center justify-center">
                 <Trophy className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                <span>Rewards</span>
+                <span>LOOT</span>
               </div>
             </motion.button>
             <motion.button
-              whileHover={{ backgroundColor: activeTab === 'points' ? 'rgba(234, 179, 8, 0.2)' : 'rgba(234, 179, 8, 0.1)' }}
+              whileHover={{ backgroundColor: 'rgba(245, 158, 11, 0.1)' }}
               whileTap={{ scale: 0.98 }}
-              className={`flex-1 py-2 sm:py-3 px-2 sm:px-4 text-center font-medium text-xs sm:text-sm ${activeTab === 'points' ? 'text-yellow-400 border-b-2 border-yellow-400' : 'text-white/70'
+              className={`flex-1 py-2 sm:py-3 px-2 sm:px-4 text-center font-medium text-xs sm:text-sm ${activeTab === 'points' ? 'text-amber-500 border-b-2 border-amber-500' : 'text-white/70'
                 }`}
               onClick={() => handleTabChange('points')}
             >
               <div className="flex items-center justify-center">
                 <DollarSign className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-                <span>Points</span>
+                <span>TOKENS</span>
               </div>
             </motion.button>
           </div>
         </div>
 
-        <CardContent className="p-0">
+        <CardContent className="p-0 relative z-10">
           {/* Render the appropriate view based on active tab */}
           {activeTab === 'tasks' && (
             <TasksView 
@@ -376,6 +435,9 @@ export default function TasksTab() {
             <PointsView pointsList={pointsList} userPointsTotal={userPointsTotal} />
           )}
         </CardContent>
+        
+        {/* Gold trim at bottom */}
+        <div className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-amber-500/50 via-amber-400 to-amber-500/50 z-10" />
       </Card>
     </motion.div>
   );
