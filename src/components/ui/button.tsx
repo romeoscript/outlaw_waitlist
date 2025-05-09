@@ -41,18 +41,25 @@ export interface ButtonProps
   asChild?: boolean
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button"
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
-    )
-  }
-)
-Button.displayName = "Button"
+// Outlaw theme button styles
+export function Button({ className, variant = "default", ...props }: ButtonProps) {
+  let outlawClass =
+    "font-extrabold uppercase tracking-wider rounded-lg transition-all duration-200 shadow-md focus:ring-2 focus:ring-amber-500 focus:ring-offset-2";
 
-export { Button, buttonVariants }
+  if (variant === "default") {
+    outlawClass +=
+      " bg-gradient-to-br from-black via-gray-900 to-black border-2 border-amber-500 text-amber-400 hover:bg-amber-500 hover:text-black hover:shadow-[0_0_20px_4px_rgba(245,158,11,0.4)] active:bg-amber-600 active:text-black";
+  } else if (variant === "secondary") {
+    outlawClass +=
+      " bg-black border-2 border-amber-500 text-white hover:bg-amber-500 hover:text-black hover:shadow-[0_0_20px_4px_rgba(245,158,11,0.4)] active:bg-amber-600 active:text-black";
+  } else if (variant === "outline") {
+    outlawClass +=
+      " bg-transparent border-2 border-amber-500 text-amber-400 hover:bg-amber-500 hover:text-black hover:shadow-[0_0_20px_4px_rgba(245,158,11,0.4)] active:bg-amber-600 active:text-black";
+  }
+
+  return (
+    <button className={`${outlawClass} ${className || ""}`} {...props} />
+  );
+}
+
+export { buttonVariants }

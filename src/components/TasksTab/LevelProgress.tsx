@@ -12,12 +12,12 @@ const LevelProgress: React.FC<LevelProgressProps> = ({ userData, userPointsTotal
   const calculateProgress = (): number => {
     if (!userData) return 0;
 
-    if (userData.total_points < 500) {
-      return (userData.total_points / 500) * 100;
-    } else if (userData.total_points < 2000) {
-      return ((userData.total_points - 500) / 1500) * 100;
-    } else if (userData.total_points < 5000) {
-      return ((userData.total_points - 2000) / 3000) * 100;
+    if (userData.total_points < 5000) {
+      return (userData.total_points / 5000) * 100;
+    } else if (userData.total_points < 20000) {
+      return ((userData.total_points - 5000) / 15000) * 100;
+    } else if (userData.total_points < 50000) {
+      return ((userData.total_points - 20000) / 30000) * 100;
     }
     return 100;
   };
@@ -25,25 +25,25 @@ const LevelProgress: React.FC<LevelProgressProps> = ({ userData, userPointsTotal
   const getCurrentLevel = (): number => {
     if (!userData) return 0;
 
-    if (userData.total_points < 500) {
+    if (userData.total_points < 5000) {
       return 0;
-    } else if (userData.total_points < 2000) {
+    } else if (userData.total_points < 20000) {
       return 1;
-    } else if (userData.total_points < 5000) {
+    } else if (userData.total_points < 50000) {
       return 2;
     }
     return 3;
   };
 
   const getNextLevelTarget = (): number | null => {
-    if (!userData) return 500;
+    if (!userData) return 5000;
 
-    if (userData.total_points < 500) {
-      return 500;
-    } else if (userData.total_points < 2000) {
-      return 2000;
-    } else if (userData.total_points < 5000) {
+    if (userData.total_points < 5000) {
       return 5000;
+    } else if (userData.total_points < 20000) {
+      return 20000;
+    } else if (userData.total_points < 50000) {
+      return 50000;
     }
     return null;
   };
@@ -165,7 +165,7 @@ const LevelProgress: React.FC<LevelProgressProps> = ({ userData, userPointsTotal
             </motion.div>
           )}
           <div className="font-bold text-xs sm:text-sm">Gunslinger</div>
-          <div className="text-[10px] sm:text-xs">500 pts</div>
+          <div className="text-[10px] sm:text-xs">5,000 pts</div>
         </div>
         
         <div
@@ -187,7 +187,7 @@ const LevelProgress: React.FC<LevelProgressProps> = ({ userData, userPointsTotal
             </motion.div>
           )}
           <div className="font-bold text-xs sm:text-sm">Desperado</div>
-          <div className="text-[10px] sm:text-xs">2,000 pts</div>
+          <div className="text-[10px] sm:text-xs">20,000 pts</div>
         </div>
         
         <div
@@ -209,7 +209,7 @@ const LevelProgress: React.FC<LevelProgressProps> = ({ userData, userPointsTotal
             </motion.div>
           )}
           <div className="font-bold text-xs sm:text-sm">Outlaw</div>
-          <div className="text-[10px] sm:text-xs">5,000 pts</div>
+          <div className="text-[10px] sm:text-xs">50,000 pts</div>
         </div>
       </motion.div>
       

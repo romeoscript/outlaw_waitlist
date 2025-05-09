@@ -46,9 +46,9 @@ export default function DashboardHeader() {
   }
 
   const getLevelName = () => {
-    if (userPoints < 500) return "Rookie";
-    if (userPoints < 2000) return "Gunslinger";
-    if (userPoints < 5000) return "Desperado";
+    if (userPoints < 5000) return "Rookie";
+    if (userPoints < 20000) return "Gunslinger";
+    if (userPoints < 50000) return "Desperado";
     return "Outlaw";
   };
 

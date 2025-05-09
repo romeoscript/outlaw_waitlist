@@ -426,9 +426,9 @@ const HodiWalletConnect: React.FC<HodiWalletConnectProps> = ({ isDisabled, onWal
           }}
           disabled={isDisabled || isWalletConnected || isLoading}
         >
-          {isLoading ? "Checking HODI Balance..." : 
+          {isLoading ? "Checking  Balance..." : 
            isWalletConnected ? `${tokenBalance.toLocaleString()} HODI Detected` : 
-           "Connect HODI Wallet"}
+           "Connect  Wallet"}
         </WalletMultiButton>
       </div>
       
