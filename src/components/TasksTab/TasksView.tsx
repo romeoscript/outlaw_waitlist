@@ -49,11 +49,11 @@ const TasksView: React.FC<TasksViewProps> = ({
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="bg-gray-900 rounded-xl border border-yellow-400/30 overflow-hidden"
+        className="bg-black rounded-xl border border-amber-500/30 overflow-hidden"
       >
-        <motion.div variants={itemVariants} className="p-3 sm:p-4 border-b border-yellow-400/20">
-          <h3 className="text-base sm:text-lg font-bold text-white">Complete Tasks</h3>
-          <p className="text-white/70 text-xs sm:text-sm">Earn points by completing these tasks</p>
+        <motion.div variants={itemVariants} className="p-3 sm:p-4 border-b border-amber-500/20">
+          <h3 className="text-base sm:text-lg font-bold text-white">Complete Missions</h3>
+          <p className="text-amber-400 text-xs sm:text-sm">Earn tokens, rise in rank, and claim loot by completing these missions</p>
         </motion.div>
 
         <div className="divide-y divide-yellow-400/10">

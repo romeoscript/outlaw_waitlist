@@ -23,7 +23,7 @@ const LoadingScreen: React.FC = () => {
       >
         <div className="flex items-center justify-center mb-2">
           <Image 
-            src="/images/outlaw-logo.png" 
+            src="/images/logo.svg" 
             alt="Outlaw Token" 
             width={50} 
             height={50}
@@ -57,7 +57,7 @@ const LoadingScreen: React.FC = () => {
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20"
         >
           <Image 
-            src="/images/token-icon.png" 
+            src="/images/logo.svg" 
             alt="Outlaw Token" 
             width={40} 
             height={40}
