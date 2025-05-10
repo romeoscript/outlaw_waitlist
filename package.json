@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "concurrently \"npm run start-next\" \"node discordBot.js\"",
     "start-next": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "setup-admin": "node scripts/setup-admin.js"
   },
   "dependencies": {
     "@dfinity/agent": "^1.2.0",
