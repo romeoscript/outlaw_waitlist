@@ -152,16 +152,10 @@ export default function WaitlistEntrance() {
   return (
     <motion.div 
       className="relative flex items-center justify-center min-h-screen overflow-hidden h-fit"
-      variants={gridVariants}
       animate="animate"
-      style={{
-        backgroundImage: `url('/images/outlaw-bg.jpg')`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundColor: "#000",
-      }}
+     
     >
-      <div className="absolute inset-0 bg-black bg-opacity-60"></div>
+      {/* <div className="absolute inset-0 bg-black bg-opacity-60"></div> */}
       <Confetti show={showConfetti} />
       
 
@@ -215,7 +209,7 @@ export default function WaitlistEntrance() {
                 className="absolute inset-0 rounded-full"
               ></motion.div>
              <img
-                src="/images/logo.jpg"
+                src="/images/logo.png"
                 alt="Logo"
                 className="w-[7rem] h-[7rem] rounded-full border-2 border-yellow-400 hover:scale-110 transition-transform duration-300"
               />

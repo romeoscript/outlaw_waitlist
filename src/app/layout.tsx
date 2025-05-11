@@ -10,8 +10,8 @@ import Head from "next/head";
 import SolanaProvider from "./solanaProvider";
 
 export const metadata: Metadata = {
-  title: "HODI waitlist",
-  description: "Book your spot for priority access to HODI.",
+  title: "Outlaw waitlist",
+  description: "Book your spot for priority access to Outlaw.",
   icons: {
     icon: "/favicon.ico",
   },

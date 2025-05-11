@@ -638,7 +638,7 @@ https://citizens.sproutmarketing.xyz/?ref=${userData?.invitation_code}`;
                           variant={"specialAction"}
                         >
                           <Image
-                            src="/images/metamask_logo.jpg"
+                            src="/images/metamask_logo.png"
                             alt="MetaMask Wallet"
                             width={24}
                             height={24}

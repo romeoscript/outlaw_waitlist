@@ -83,7 +83,7 @@ export default function DashboardHeader() {
             <div className="relative">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-amber-500 bg-black flex items-center justify-center hover:scale-110 transition-transform duration-300">
                 <img
-                  src="/images/logo.jpg"
+                  src="/images/logo.png"
                   alt="Logo"
                   className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-amber-500 object-cover"
                 />

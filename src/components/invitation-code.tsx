@@ -80,7 +80,7 @@ export default function InvitationCode({
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
           <img
-                  src="/images/logo.jpg"
+                  src="/images/logo.png"
                   alt="Logo"
                   className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-amber-500 object-cover"
                 />
