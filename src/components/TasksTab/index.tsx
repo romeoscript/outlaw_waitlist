@@ -177,7 +177,7 @@ export default function TasksTab() {
         if (fetchedPointsList) {
           setIsTwitterFollowed(
             fetchedPointsList.some(
-              (point) => point.note === "Follow $HODI on Twitter"
+              (point) => point.note === "Follow Outlaw on Twitter"
             ) || false
           );
 

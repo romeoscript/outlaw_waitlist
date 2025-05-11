@@ -264,7 +264,7 @@ https://citizens.sproutmarketing.xyz/?ref=${userData?.invitation_code}`;
       await setIsTwitterIIFollowed(
         fetchedPointsList?.some(
           // (point) => point.note === "Follow Galaxy.do on Twitter"
-          (point) => point.note === "Follow $HODI on Twitter"
+          (point) => point.note === "Follow Outlaw on Twitter"
         ) || false
       );
       await setIsTwitterIIIFollowed(
@@ -638,7 +638,7 @@ https://citizens.sproutmarketing.xyz/?ref=${userData?.invitation_code}`;
                           variant={"specialAction"}
                         >
                           <Image
-                            src="/images/metamask_logo.png"
+                            src="/images/metamask_logo.jpg"
                             alt="MetaMask Wallet"
                             width={24}
                             height={24}

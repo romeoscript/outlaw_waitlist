@@ -82,11 +82,11 @@ export default function DashboardHeader() {
             <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 opacity-75 group-hover:opacity-100 blur group-hover:blur-md transition-all duration-300"></div>
             <div className="relative">
               <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-amber-500 bg-black flex items-center justify-center hover:scale-110 transition-transform duration-300">
-                <svg width="24" height="24" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform scale-75">
-                  <path d="M100 20C70 20 40 50 40 80C40 110 70 140 100 140C130 140 160 110 160 80C160 50 130 20 100 20Z" fill="#F59E0B"/>
-                  <path d="M74 60L100 100L126 60L100 20L74 60Z" fill="#1E293B"/>
-                  <path d="M100 140V180M80 160H120" stroke="#F59E0B" strokeWidth="10"/>
-                </svg>
+                <img
+                  src="/images/logo.jpg"
+                  alt="Logo"
+                  className="relative w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-amber-500 object-cover"
+                />
               </div>
             </div>
           </div>
@@ -111,14 +111,14 @@ export default function DashboardHeader() {
           className="flex items-center"
         >
           {/* Points display with animation */}
-          <motion.div 
+          {/* <motion.div 
             className="mr-3 bg-black border border-amber-500 rounded-full px-3 py-1 text-sm font-bold flex items-center"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <DollarSign className="w-3 h-3 sm:w-4 sm:h-4 mr-1 text-amber-500" />
             <span className="text-amber-500">{userPoints}</span>
-          </motion.div>
+          </motion.div> */}
           
           {/* User profile section */}
           <div className="relative">

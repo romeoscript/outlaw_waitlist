@@ -15,14 +15,14 @@ const TwitterButton: React.FC<TwitterButtonProps> = ({ isDisabled, onFollowSucce
 
   const handleFollowClick = async () => {
     setIsProcessing(true);
-    window.open('https://twitter.com/intent/follow?screen_name=catcartel_xyz', '_blank');
+    window.open('https://twitter.com/intent/follow?screen_name=otlwgame', '_blank');
     
     try {
       const success = await twitterPoints();
       if (success) {
         toast({
           title: "Success!",
-          description: "You've earned 100 points for following HODI on Twitter! 🎉",
+          description: "You've earned 100 points for following Outlaw on Twitter! 🎉",
         });
         onFollowSuccess();
       } else {
@@ -62,7 +62,7 @@ const TwitterButton: React.FC<TwitterButtonProps> = ({ isDisabled, onFollowSucce
             height={16}
             className="mr-2"
           />
-          <span>Follow $HODI on X</span>
+          <span>Follow Outlaw on X</span>
         </>
       )}
     </Button>

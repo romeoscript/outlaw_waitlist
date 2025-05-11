@@ -10,7 +10,7 @@ interface TelegramButtonProps {
 
 const TelegramButton: React.FC<TelegramButtonProps> = ({ isDisabled, onFollowSuccess }) => {
   const handleFollowClick = async () => {
-    window.open('https://t.me/hodicoin', '_blank');
+    window.open('https://t.me/otlwgames', '_blank');
     const success = await TelegramPoints();
     if (success) {
       onFollowSuccess();
@@ -39,7 +39,7 @@ const TelegramButton: React.FC<TelegramButtonProps> = ({ isDisabled, onFollowSuc
 
 const TelegramIIButton: React.FC<TelegramButtonProps> = ({ isDisabled, onFollowSuccess }) => {
   const handleFollowClick = async () => {
-    window.open('https://t.me/hodicoin', '_blank');
+    window.open('https://t.me/otlwgames', '_blank');
     const success = await TelegramIIPoints();
     if (success) {
       onFollowSuccess();

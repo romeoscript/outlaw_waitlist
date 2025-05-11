@@ -278,7 +278,7 @@ ${process.env.NEXT_PUBLIC_URL || "https://nft.xyz"}/?ref=${userData?.invitation_
         if (fetchedPointsList) {
           setIsTwitterFollowed(
             fetchedPointsList.some(
-              (point) => point.note === "Follow $HODI on Twitter"
+              (point) => point.note === "Follow Outlaw on Twitter"
             ) || false
           );
 

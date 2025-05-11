@@ -215,7 +215,7 @@ export default function WaitlistEntrance() {
                 className="absolute inset-0 rounded-full"
               ></motion.div>
              <img
-                src="/images/logo.svg"
+                src="/images/logo.jpg"
                 alt="Logo"
                 className="w-[7rem] h-[7rem] rounded-full border-2 border-yellow-400 hover:scale-110 transition-transform duration-300"
               />
@@ -251,7 +251,7 @@ export default function WaitlistEntrance() {
           >
             <Button
               onClick={signInWithTwitter}
-              className="w-full py-6 font-bold text-black bg-amber-500 hover:bg-black hover:text-amber-500 border-2 border-amber-500 transition-all duration-300 group transform rounded-xl relative overflow-hidden"
+              className="w-full py-6 font-bold text-white bg-amber-500 hover:bg-black hover:text-amber-500 border-2 border-amber-500 transition-all duration-300 group transform rounded-xl relative overflow-hidden"
             >
               <AnimatePresence>
                 {hoverButton && (

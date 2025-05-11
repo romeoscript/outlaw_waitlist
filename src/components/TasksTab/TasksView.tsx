@@ -66,28 +66,28 @@ const TasksView: React.FC<TasksViewProps> = ({
           </TaskItem>
 
           {/* Twitter II Follow */}
-          <TaskItem isCompleted={isTwitterIIFollowed} points={100}>
+          {/* <TaskItem isCompleted={isTwitterIIFollowed} points={100}>
             <TwitterIIButton
               isDisabled={isTwitterIIFollowed}
               onFollowSuccess={refreshTwitterIIFollowStatus}
             />
-          </TaskItem>
+          </TaskItem> */}
 
           {/* Twitter III Follow */}
-          <TaskItem isCompleted={isTwitterIIIFollowed} points={100}>
+          {/* <TaskItem isCompleted={isTwitterIIIFollowed} points={100}>
             <TwitterIIIButton
               isDisabled={isTwitterIIIFollowed}
               onFollowSuccess={refreshTwitterIIIFollowStatus}
             />
-          </TaskItem>
+          </TaskItem> */}
 
           {/* Discord Join */}
-          <TaskItem isCompleted={isDiscordJoined} points={100}>
+          {/* <TaskItem isCompleted={isDiscordJoined} points={100}>
             <DiscordButton
               isDisabled={isDiscordJoined}
               onFollowSuccess={refreshDiscordJoinStatus}
             />
-          </TaskItem>
+          </TaskItem> */}
 
           {/* Telegram II Join */}
           <TaskItem isCompleted={isTelegramIIJoined} points={100}>

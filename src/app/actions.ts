@@ -113,6 +113,45 @@ export async function claimCode(code: string) {
     : code === "ronnie" ? SIGN_UP_ARES_POINTS
     : SIGN_UP_POINTS;
 
+  // Generate a random alphanumeric invitation code for the new user
+  const generateAlphanumericCode = (length = 6) => {
+    const characters = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; // Removed easily confused chars like 0/O, 1/I
+    let result = '';
+    const charactersLength = characters.length;
+    
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    
+    return result;
+  };
+  
+  // Make sure the generated code is unique
+  let newInvitationCode = generateAlphanumericCode();
+  let isCodeUnique = false;
+  
+  while (!isCodeUnique) {
+    const { data: existingCodeData, error: codeCheckError } = await serviceSupabase
+      .from("accounts")
+      .select("id")
+      .eq("invitation_code", newInvitationCode);
+      
+    if (codeCheckError) {
+      console.error("Error checking code uniqueness:", codeCheckError);
+      return false;
+    }
+    
+    if (!existingCodeData || existingCodeData.length === 0) {
+      isCodeUnique = true;
+    } else {
+      newInvitationCode = generateAlphanumericCode();
+    }
+  }
+
+  // Get current timestamp
+  const currentTimestamp = new Date().toISOString();
+  
+  // Insert new account with invitation code and timestamp
   const { error: createAccountError } = await serviceSupabase
     .from("accounts")
     .insert({
@@ -121,6 +160,9 @@ export async function claimCode(code: string) {
       email: user.email,
       twitter_handle: "@" + user.user_metadata.preferred_username,
       total_points: signUpPoints,
+      invitation_code: newInvitationCode,
+      created_at: currentTimestamp,
+      invited_accounts_count: 0 // Initialize the counter
     });
 
   if (createAccountError) {
@@ -143,11 +185,17 @@ export async function claimCode(code: string) {
   const { error: pointsInsertError } = await serviceSupabase
     .from("points")
     .insert([
-      { account_id: user.id, amount: signUpPoints, note: "Sign Up" },
+      { 
+        account_id: user.id, 
+        amount: signUpPoints, 
+        note: "Sign Up",
+        created_at: currentTimestamp
+      },
       {
         account_id: invitorAccountData[0].id,
         amount: REFERRAL_POINTS,
         note: `Referral of ${"@" + user.user_metadata.preferred_username}`,
+        created_at: currentTimestamp
       },
     ]);
 
@@ -415,7 +463,7 @@ export async function fetchTwitterFollowed() {
     .from("points")
     .select("note")
     .eq("account_id", user.id)
-    .eq("note", "Follow $HODI on Twitter");
+    .eq("note", "Follow Outlaw on Twitter");
 
   if (fetchError) {
     console.error("Error fetching note", error);
@@ -487,7 +535,7 @@ export async function twitterPoints() {
     .insert({
       account_id: user.id,
       amount: TWITTER_FOLLOW_POINTS,
-      note: "Follow $HODI on Twitter",
+      note: "Follow Outlaw on Twitter",
     });
 
   const { error: increasePointsError } = await serviceSupabase
