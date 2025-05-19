@@ -58,7 +58,7 @@ const TasksView: React.FC<TasksViewProps> = ({
 
         <div className="divide-y divide-yellow-400/10">
           {/* Twitter Follow */}
-          <TaskItem isCompleted={isTwitterFollowed} points={100}>
+          <TaskItem isCompleted={isTwitterFollowed} points={1000}>
             <TwitterButton
               isDisabled={isTwitterFollowed}
               onFollowSuccess={refreshTwitterFollowStatus}
@@ -66,12 +66,12 @@ const TasksView: React.FC<TasksViewProps> = ({
           </TaskItem>
 
           {/* Twitter II Follow */}
-          {/* <TaskItem isCompleted={isTwitterIIFollowed} points={100}>
+          <TaskItem isCompleted={isTwitterIIFollowed} points={500}>
             <TwitterIIButton
               isDisabled={isTwitterIIFollowed}
               onFollowSuccess={refreshTwitterIIFollowStatus}
             />
-          </TaskItem> */}
+          </TaskItem>
 
           {/* Twitter III Follow */}
           {/* <TaskItem isCompleted={isTwitterIIIFollowed} points={100}>
@@ -90,7 +90,7 @@ const TasksView: React.FC<TasksViewProps> = ({
           </TaskItem> */}
 
           {/* Telegram II Join */}
-          <TaskItem isCompleted={isTelegramIIJoined} points={100}>
+          <TaskItem isCompleted={isTelegramIIJoined} points={1000}>
             <TelegramIIButton
               isDisabled={isTelegramIIJoined}
               onFollowSuccess={refreshTelegramIIJoinStatus}
@@ -105,11 +105,12 @@ const TasksView: React.FC<TasksViewProps> = ({
           >
             <HodiWalletConnect
               isDisabled={isSolanaWalletConnected}
+              points={500}
               onWalletConnectSuccess={(points) => {
                 if (points > 0) {
                   triggerRewardAnimation(`Wallet connected with ${points.toLocaleString()} HODI holding bonus!`);
                 } else {
-                  triggerRewardAnimation("Wallet connected! +200 points");
+                  triggerRewardAnimation("Wallet connected! +500 points");
                 }
               }}
             />

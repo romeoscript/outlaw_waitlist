@@ -14,11 +14,11 @@ const RewardsView: React.FC<RewardsViewProps> = ({ userData }) => {
   const getCurrentLevel = (): number => {
     if (!userData) return 0;
 
-    if (userData.total_points < 5000) {
+    if (userData.total_points < 4000) {
       return 0;
-    } else if (userData.total_points < 20000) {
+    } else if (userData.total_points < 10000) {
       return 1;
-    } else if (userData.total_points < 50000) {
+    } else if (userData.total_points < 25000) {
       return 2;
     }
     return 3;
@@ -34,7 +34,7 @@ const RewardsView: React.FC<RewardsViewProps> = ({ userData }) => {
       >
         <motion.div variants={itemVariants} className="flex items-center mb-3 sm:mb-4">
           <Gift className="h-4 w-4 sm:h-5 sm:w-5 text-amber-500 mr-2" />
-          <h3 className="text-base sm:text-lg font-bold text-white">Outlaw Loot & Badges</h3>
+          <h3 className="text-base sm:text-lg font-bold text-white">Ranks & Badges</h3>
         </motion.div>
         <motion.p variants={itemVariants} className="text-white/70 mb-4 sm:mb-6 text-xs sm:text-sm">
           Complete missions and rise through the ranks to unlock exclusive Outlaw loot and badges.
@@ -51,7 +51,7 @@ const RewardsView: React.FC<RewardsViewProps> = ({ userData }) => {
               <h4 className="font-bold text-sm sm:text-lg">Gunslinger</h4>
               <div className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded bg-black text-white/70">Rank 1</div>
             </div>
-            <div className="text-white/70 text-[10px] sm:text-xs mb-2 sm:mb-3">Unlocks at 5,000 tokens</div>
+            <div className="text-white/70 text-[10px] sm:text-xs mb-2 sm:mb-3">Unlocks at 4,000 points</div>
             <ul className="space-y-1 sm:space-y-2 text-[11px] sm:text-sm">
               <li className="flex items-center">
                 <div className={`w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 rounded-full ${getCurrentLevel() >= 1 ? 'bg-amber-500' : 'bg-black/40'}`}></div>
@@ -59,7 +59,11 @@ const RewardsView: React.FC<RewardsViewProps> = ({ userData }) => {
               </li>
               <li className="flex items-center">
                 <div className={`w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 rounded-full ${getCurrentLevel() >= 1 ? 'bg-amber-500' : 'bg-black/40'}`}></div>
-                <span className={getCurrentLevel() >= 1 ? 'text-white' : 'text-white/50'}>Early Access to Drops</span>
+                <span className={getCurrentLevel() >= 1 ? 'text-white' : 'text-white/50'}>Bonus mini-game loot</span>
+              </li>
+              <li className="flex items-center">
+                <div className={`w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 rounded-full ${getCurrentLevel() >= 1 ? 'bg-amber-500' : 'bg-black/40'}`}></div>
+                <span className={getCurrentLevel() >= 1 ? 'text-white' : 'text-white/50'}>10% discount on all purchases</span>
               </li>
             </ul>
             {getCurrentLevel() >= 1 ? (
@@ -83,7 +87,7 @@ const RewardsView: React.FC<RewardsViewProps> = ({ userData }) => {
               <h4 className="font-bold text-sm sm:text-lg">Desperado</h4>
               <div className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded bg-black text-white/70">Rank 2</div>
             </div>
-            <div className="text-white/70 text-[10px] sm:text-xs mb-2 sm:mb-3">Unlocks at 20,000 tokens</div>
+            <div className="text-white/70 text-[10px] sm:text-xs mb-2 sm:mb-3">Unlocks at 10,000 points</div>
             <ul className="space-y-1 sm:space-y-2 text-[11px] sm:text-sm">
               <li className="flex items-center">
                 <div className={`w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 rounded-full ${getCurrentLevel() >= 2 ? 'bg-amber-500' : 'bg-black/40'}`}></div>
@@ -91,11 +95,15 @@ const RewardsView: React.FC<RewardsViewProps> = ({ userData }) => {
               </li>
               <li className="flex items-center">
                 <div className={`w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 rounded-full ${getCurrentLevel() >= 2 ? 'bg-amber-500' : 'bg-black/40'}`}></div>
-                <span className={getCurrentLevel() >= 2 ? 'text-white' : 'text-white/50'}>Exclusive Outlaw Badge</span>
+                <span className={getCurrentLevel() >= 2 ? 'text-white' : 'text-white/50'}>Priority private sale access</span>
               </li>
               <li className="flex items-center">
                 <div className={`w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 rounded-full ${getCurrentLevel() >= 2 ? 'bg-amber-500' : 'bg-black/40'}`}></div>
                 <span className={getCurrentLevel() >= 2 ? 'text-white' : 'text-white/50'}>Special Loot Drops</span>
+              </li>
+              <li className="flex items-center">
+                <div className={`w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 rounded-full ${getCurrentLevel() >= 2 ? 'bg-amber-500' : 'bg-black/40'}`}></div>
+                <span className={getCurrentLevel() >= 2 ? 'text-white' : 'text-white/50'}>20% discount on all purchases</span>
               </li>
             </ul>
             {getCurrentLevel() >= 2 ? (
@@ -119,7 +127,7 @@ const RewardsView: React.FC<RewardsViewProps> = ({ userData }) => {
               <h4 className="font-bold text-sm sm:text-lg">Outlaw</h4>
               <div className="text-[10px] sm:text-xs px-1.5 sm:px-2 py-0.5 sm:py-1 rounded bg-black text-white/70">Rank 3</div>
             </div>
-            <div className="text-white/70 text-[10px] sm:text-xs mb-2 sm:mb-3">Unlocks at 50,000 tokens</div>
+            <div className="text-white/70 text-[10px] sm:text-xs mb-2 sm:mb-3">Unlocks at 25,000 points</div>
             <ul className="space-y-1 sm:space-y-2 text-[11px] sm:text-sm">
               <li className="flex items-center">
                 <div className={`w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 rounded-full ${getCurrentLevel() >= 3 ? 'bg-amber-500' : 'bg-black/40'}`}></div>
@@ -132,6 +140,10 @@ const RewardsView: React.FC<RewardsViewProps> = ({ userData }) => {
               <li className="flex items-center">
                 <div className={`w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 rounded-full ${getCurrentLevel() >= 3 ? 'bg-amber-500' : 'bg-black/40'}`}></div>
                 <span className={getCurrentLevel() >= 3 ? 'text-white' : 'text-white/50'}>Legendary Loot Airdrop</span>
+              </li>
+              <li className="flex items-center">
+                <div className={`w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 rounded-full ${getCurrentLevel() >= 3 ? 'bg-amber-500' : 'bg-black/40'}`}></div>
+                <span className={getCurrentLevel() >= 3 ? 'text-white' : 'text-white/50'}>30% discount on all purchases</span>
               </li>
             </ul>
             {getCurrentLevel() >= 3 ? (

@@ -104,7 +104,7 @@ export default function WaitlistEntrance() {
           transition={{ duration: 0.5 }}
           className="flex flex-col items-center relative z-10"
         >
-          <motion.div
+          {/* <motion.div
             animate={{
               rotate: 360,
               boxShadow: ["0 0 20px rgba(245, 158, 11, 0.5)", "0 0 40px rgba(245, 158, 11, 0.8)", "0 0 20px rgba(245, 158, 11, 0.5)"]
@@ -122,7 +122,14 @@ export default function WaitlistEntrance() {
                 <path d="M100 140V180M80 160H120" stroke="#F59E0B" strokeWidth="10"/>
               </svg>
             </div>
-          </motion.div>
+          </motion.div> */}
+
+          <Image
+            src="/images/logo.png"
+            alt="Logo"
+            width={100}
+            height={100}
+          />
           
           <motion.div 
             animate={{ 
@@ -245,7 +252,7 @@ export default function WaitlistEntrance() {
           >
             <Button
               onClick={signInWithTwitter}
-              className="w-full py-6 font-bold text-white bg-amber-500 hover:bg-black hover:text-amber-500 border-2 border-amber-500 transition-all duration-300 group transform rounded-xl relative overflow-hidden"
+              className="w-full py-6 font-bold text-white bg-amber-500 hover:bg-black hover:text-amber-500 border-2 border-amber-500 transition-all duration-300 group transform rounded-xl relative overflow-hidden hover:text-white "
             >
               <AnimatePresence>
                 {hoverButton && (
@@ -269,7 +276,7 @@ export default function WaitlistEntrance() {
                   height={30}
                   className="mr-3 group-hover:rotate-12 transition-all duration-300"
                 />
-                <span className="text-lg group-hover:tracking-wider transition-all duration-300">
+                <span className="text-lg group-hover:tracking-wider hover:text-white transition-all duration-300">
                   SIGN IN WITH X
                 </span>
               </div>

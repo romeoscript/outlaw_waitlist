@@ -13,9 +13,9 @@ const SIGN_UP_SULTAN_POINTS = 5000;
 const SIGN_UP_CHRIS_POINTS = 20000;
 const SIGN_UP_BLEVER_POINTS = 20000;
 const REFERRAL_POINTS = 500;
-const PLUG_WALLET_POINTS = 200;
-const TWITTER_FOLLOW_POINTS = 100;
-const DISCORD_JOIN_POINTS = 100;
+const PLUG_WALLET_POINTS = 500;
+const TWITTER_FOLLOW_POINTS = 1000;
+const DISCORD_JOIN_POINTS = 1000;
 const SIGN_UP_KODAMA_POINTS = 5000;
 const SIGN_UP_LOSHMI_POINTS = 20000;
 
@@ -480,7 +480,7 @@ export async function fetchTwitterIIFollowed() {
     .from("points")
     .select("note")
     .eq("account_id", user.id)
-    .eq("note", "Subscribe to our youtube channel");
+    .eq("note", "Read whitepaper");
 
   if (fetchError) {
     console.error("Error fetching note", error);
@@ -609,7 +609,7 @@ export async function twitterIIPoints() {
     .insert({
       account_id: user.id,
       amount: TWITTER_FOLLOW_POINTS,
-      note: "Subscribe to our youtube channel",
+      note: "Read whitepaper",
     });
   
     const { error: increasePointsError } = await serviceSupabase
@@ -634,7 +634,7 @@ export async function twitterIIPoints() {
       .insert({
         account_id: existingAccount.invited_by_account_id,
         amount: TWITTER_FOLLOW_POINTS / 10,
-        note: "Subscribe to our youtube channel",
+        note: "Read whitepaper",
       });
   }
 

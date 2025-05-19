@@ -22,7 +22,7 @@ const TwitterButton: React.FC<TwitterButtonProps> = ({ isDisabled, onFollowSucce
       if (success) {
         toast({
           title: "Success!",
-          description: "You've earned 100 points for following Outlaw on Twitter! 🎉",
+          description: "You've earned 1000 points for following Outlaw on Twitter! 🎉",
         });
         onFollowSuccess();
       } else {
@@ -94,7 +94,7 @@ const TwitterIIButton: React.FC<TwitterButtonProps> = ({ isDisabled, onFollowSuc
         height={24}
         className="mr-2"
       />
-      <span>Subscribe to our Youtube Channel</span>
+      <span>Read whitepaper</span>
     </Button>
   );
 };

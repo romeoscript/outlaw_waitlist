@@ -57,7 +57,7 @@ export default function TasksTab() {
       setIsTwitterFollowed(!!followed);
 
       if (!wasAlreadyFollowed && followed) {
-        triggerRewardAnimation("Twitter follow completed! +100 OUTLAW tokens");
+        triggerRewardAnimation("Twitter follow completed! +1000 OUTLAW tokens");
       }
     } finally {
       setIsLoading(false);
@@ -72,7 +72,7 @@ export default function TasksTab() {
       setIsTwitterIIFollowed(!!followed);
 
       if (!wasAlreadyFollowed && followed) {
-        triggerRewardAnimation("Subscribed to channel! +100 OUTLAW tokens");
+        triggerRewardAnimation("Whitepaper read! +500 OUTLAW tokens");
       }
     } finally {
       setIsLoading(false);
@@ -117,7 +117,7 @@ export default function TasksTab() {
       setIsTelegramJoined(!!joined);
 
       if (!wasAlreadyJoined && joined) {
-        triggerRewardAnimation("Telegram posse joined! +100 OUTLAW tokens");
+        triggerRewardAnimation("Telegram Channel joined! +1000 OUTLAW tokens");
       }
     } finally {
       setIsLoading(false);
@@ -132,7 +132,7 @@ export default function TasksTab() {
       setIsTelegramIIJoined(!!joined);
 
       if (!wasAlreadyJoined && joined) {
-        triggerRewardAnimation("Telegram channel joined! +100 OUTLAW tokens");
+        triggerRewardAnimation("Telegram channel joined! +1000 OUTLAW tokens");
       }
     } finally {
       setIsLoading(false);
@@ -183,7 +183,7 @@ export default function TasksTab() {
 
           setIsTwitterIIFollowed(
             fetchedPointsList.some(
-              (point) => point.note === "Subscribe to our youtube channel"
+              (point) => point.note === "Read whitepaper"
             ) || false
           );
 
@@ -297,22 +297,19 @@ export default function TasksTab() {
               >
                 <div className="relative group mr-3">
                   <div className="absolute -inset-1 rounded-full bg-gradient-to-r from-amber-400 to-amber-600 opacity-75 group-hover:opacity-100 blur group-hover:blur-md transition-all duration-300"></div>
-                  <div className="relative">
-                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-amber-500 bg-black flex items-center justify-center">
-                      <svg width="24" height="24" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform scale-75">
-                        <path d="M100 20C70 20 40 50 40 80C40 110 70 140 100 140C130 140 160 110 160 80C160 50 130 20 100 20Z" fill="#F59E0B"/>
-                        <path d="M74 60L100 100L126 60L100 20L74 60Z" fill="#1E293B"/>
-                        <path d="M100 140V180M80 160H120" stroke="#F59E0B" strokeWidth="10"/>
-                      </svg>
-                    </div>
-                  </div>
+                 <Image
+                  src="/images/logo.png"
+                  alt="Logo"
+                  width={50}
+                  height={50}
+                 />
                 </div>
                 <div>
                   <CardTitle className="text-xl sm:text-3xl font-bold text-white">
                     OUTLAW <span className="text-amber-500">WAITLIST</span>
                   </CardTitle>
                   <CardDescription className="text-white/70 mt-1 sm:mt-2 text-sm sm:text-base">
-                    Complete bounties, earn tokens, join the gang!
+                    Complete bounties, earn tokens, become an outlaw
                   </CardDescription>
                 </div>
               </motion.div>

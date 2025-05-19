@@ -6,13 +6,15 @@ import { useToast } from "./ui/use-toast";
 import { motion } from "framer-motion";
 import { CheckCircle2, Lock } from "lucide-react";
 import { savePrincipalId, fetchAccount } from "@/app/actions";
+import { Zap } from "lucide-react";
 
 interface HodiWalletConnectProps {
   isDisabled: boolean;
+  points: number;
   onWalletConnectSuccess: (points: number) => void;
 }
 
-const HodiWalletConnect: React.FC<HodiWalletConnectProps> = ({ isDisabled, onWalletConnectSuccess }) => {
+const HodiWalletConnect: React.FC<HodiWalletConnectProps> = ({ isDisabled, points, onWalletConnectSuccess }) => {
   const { publicKey, connected } = useWallet();
   const [isWalletConnected, setIsWalletConnected] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,22 +23,22 @@ const HodiWalletConnect: React.FC<HodiWalletConnectProps> = ({ isDisabled, onWal
   // Simplified effect to handle wallet connection only
   useEffect(() => {
     let isMounted = true;
-    
+
     const connectWallet = async () => {
       if (!connected || !publicKey || !isMounted) return;
-      
+
       try {
         setIsLoading(true);
-        
+
         // Check if user already has an account
         const account = await fetchAccount();
-        
+
         if (!account) {
           console.log("No account found");
           setIsLoading(false);
           return;
         }
-        
+
         // Check if this wallet is already associated with the account
         if (account.principal_id === publicKey.toString()) {
           console.log("Wallet already connected to account");
@@ -44,26 +46,26 @@ const HodiWalletConnect: React.FC<HodiWalletConnectProps> = ({ isDisabled, onWal
           setIsLoading(false);
           return;
         }
-        
+
         // Connect new wallet
         if (!isWalletConnected) {
           console.log("Connecting new wallet");
-          
+
           // Save wallet address
           if (!account.principal_id) {
             console.log("Saving new principal ID");
             const success = await savePrincipalId(publicKey.toString(), 0); // Not checking balance, pass 0
-            
+
             if (isMounted && success) {
               setIsWalletConnected(true);
-              
+
               toast({
                 title: "Wallet Connected Successfully",
                 description: "Your wallet has been connected to your account."
               });
-              
+
               // Use default point value since we're not checking balance
-              onWalletConnectSuccess(200); // Using PLUG_WALLET_POINTS
+              onWalletConnectSuccess(points); // Using PLUG_WALLET_POINTS
             }
           } else {
             // Wallet already exists but different from current connection
@@ -81,20 +83,20 @@ const HodiWalletConnect: React.FC<HodiWalletConnectProps> = ({ isDisabled, onWal
         if (isMounted) setIsLoading(false);
       }
     };
-    
+
     // Check if wallet is already connected in database
     const checkExistingWallet = async () => {
       if (!isMounted) return;
-      
+
       try {
         setIsLoading(true);
         const account = await fetchAccount();
-        
+
         if (!account) {
           setIsLoading(false);
           return;
         }
-        
+
         // If account has a wallet connected already
         if (account.principal_id) {
           try {
@@ -111,13 +113,13 @@ const HodiWalletConnect: React.FC<HodiWalletConnectProps> = ({ isDisabled, onWal
         if (isMounted) setIsLoading(false);
       }
     };
-    
+
     if (connected && publicKey) {
       connectWallet();
     } else {
       checkExistingWallet();
     }
-    
+
     return () => {
       isMounted = false;
     };
@@ -143,36 +145,44 @@ const HodiWalletConnect: React.FC<HodiWalletConnectProps> = ({ isDisabled, onWal
           </motion.div>
         )}
       </div>
-      
-      <div className="flex-1 min-w-0">
-        <WalletMultiButton
-          className="wallet-adapter-button wallet-adapter-button-trigger"
-          style={{
-            backgroundColor: isWalletConnected ? "#d4af37" : "#eab308",
-            color: "black",
-            fontFamily: "inherit",
-            height: "36px",
-            padding: "0 12px",
-            fontSize: "12px",
-            borderRadius: "8px",
-            cursor: isDisabled || isWalletConnected ? "default" : "pointer",
-            display: "flex",
-            alignItems: "center",
-            fontWeight: "600",
-            transition: "background-color 0.2s ease",
-            opacity: isDisabled || isWalletConnected ? 0.7 : 1,
-            maxWidth: "100%",
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            whiteSpace: "nowrap"
-          }}
-          disabled={isDisabled || isWalletConnected || isLoading}
-        >
-          {isLoading ? "Connecting Wallet..." : 
-           isWalletConnected ? "Wallet Connected" : 
-           "Connect Wallet"}
-        </WalletMultiButton>
-      </div>
+
+      <figure className="flex items-center justify-between">
+        <div className="flex-1 min-w-0">
+          <WalletMultiButton
+            className="wallet-adapter-button wallet-adapter-button-trigger"
+            style={{
+              backgroundColor: isWalletConnected ? "#d4af37" : "#eab308",
+              color: "black",
+              fontFamily: "inherit",
+              height: "36px",
+              padding: "0 12px",
+              fontSize: "12px",
+              borderRadius: "8px",
+              cursor: isDisabled || isWalletConnected ? "default" : "pointer",
+              display: "flex",
+              alignItems: "center",
+              fontWeight: "600",
+              transition: "background-color 0.2s ease",
+              opacity: isDisabled || isWalletConnected ? 0.7 : 1,
+              maxWidth: "100%",
+              overflow: "hidden",
+              textOverflow: "ellipsis",
+              whiteSpace: "nowrap"
+            }}
+            disabled={isDisabled || isWalletConnected || isLoading}
+          >
+            {isLoading ? "Connecting Wallet..." :
+              isWalletConnected ? "Wallet Connected" :
+                "Connect Solana Wallet"}
+          </WalletMultiButton>
+        </div>
+        
+      </figure>
+
+      <div className="ml-2 sm:ml-4 flex items-center text-yellow-400 whitespace-nowrap">
+          <Zap size={14} className="mr-1 sm:h-4 sm:w-4" />
+          <span className="font-bold text-xs sm:text-sm">{points}</span>
+        </div>
     </div>
   );
 };
