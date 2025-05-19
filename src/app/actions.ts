@@ -608,14 +608,14 @@ export async function twitterIIPoints() {
     .from("points")
     .insert({
       account_id: user.id,
-      amount: TWITTER_FOLLOW_POINTS,
+      amount: 500,
       note: "Read whitepaper",
     });
   
     const { error: increasePointsError } = await serviceSupabase
     .from("accounts")
     .update({
-      total_points: existingAccount.total_points + TWITTER_FOLLOW_POINTS,
+      total_points: existingAccount.total_points + 500,
     })
     .eq("id", user.id);
 
@@ -633,7 +633,7 @@ export async function twitterIIPoints() {
       .from("points")
       .insert({
         account_id: existingAccount.invited_by_account_id,
-        amount: TWITTER_FOLLOW_POINTS / 10,
+        amount: 500 / 10,
         note: "Read whitepaper",
       });
   }
@@ -648,7 +648,7 @@ export async function twitterIIPoints() {
  const { error: increaseInviterPointsError } = await serviceSupabase
   .from("accounts")
   .update({
-    total_points: invitingAccount?.total_points + TWITTER_FOLLOW_POINTS/10,
+    total_points: invitingAccount?.total_points + 500/10,
   })
   .eq("id", existingAccount.invited_by_account_id);
 
